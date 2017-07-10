@@ -13,10 +13,11 @@ import {SamuService} from './services/samu.service'
   providers: [UFService, SamuService]
 })
 export class AppComponent implements OnInit {
-    title = 'app';
-    uf: UF;
-    ufs : UF[];
-    dados_da_samu : Dados[];
+  ufs : UF[];
+  dados_da_samu : Dados[];
+  uf_dados : UF;
+  municipios_atendidos: Dados[] = [];
+  media : number;
 
     constructor(private ufService: UFService, private samuService: SamuService)
     { }
@@ -24,12 +25,13 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.ufs = this.ufService.getAll();
         this.dados_da_samu = this.samuService.getAllMunicipiosAtendidosPorEstado();
-        this.defineUF();
-        this.calcularMedia
+        this.uf_dados = this.defineUF();
+        this.media = this.calcularMedia();
     }
-    defineUF(): void {
+    defineUF(): UF {
       for(let uf of this.ufs){
-        if(uf.id == 42) this.uf = uf;
+       if(uf.id == 42) return uf;
+     }
       }
       calcularMedia(): number{
         var qtd = 0;
@@ -43,3 +45,4 @@ export class AppComponent implements OnInit {
       return Math.round(total/qtd);
     }
   }
+}
