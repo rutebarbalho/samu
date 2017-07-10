@@ -14,8 +14,7 @@ import {SamuService} from './services/samu.service'
 })
 export class AppComponent implements OnInit {
     title = 'app';
-    uf_id = '';
-    area = '';
+    uf: UF;
     ufs : UF[];
     dados_da_samu : Dados[];
 
@@ -25,18 +24,22 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.ufs = this.ufService.getAll();
         this.dados_da_samu = this.samuService.getAllMunicipiosAtendidosPorEstado();
-        this.defineTitle();
-        //this.detailUF();
+        this.defineUF();
+        this.calcularMedia
     }
-    defineTitle(): void {
+    defineUF(): void {
       for(let uf of this.ufs){
-        if(uf.id == 42) this.title = uf.nome;
+        if(uf.id == 42) this.uf = uf;
       }
-
-      //detailUF(): void{
-        //for(let uf of this.ufs){
-          //if(uf.id == 42)
-      //this.uf_id = String(uf.id);
-      //this.area = String(uf.area);
+      calcularMedia(): number{
+        var qtd = 0;
+        var total = 0;
+        for(let mun of this.dados_da_samu){
+          if(mun.uf_id == 42){
+            qtd++;
+            total += mun.valor;
+            this.municipios_atendidos.push(mun);
+      }
+      return Math.round(total/qtd);
     }
   }
