@@ -9,4 +9,11 @@ export class SamuService {
   getAllMunicipiosAtendidosPorEstado(): Dados[] {
     return VALORES;
   }
-}
+  getPorUFMunicipiosAtendidosPorEstado(uf_id: number): Dados[]{
+    var munAtendidos : Dados[] = [];
+    for(let mun of VALORES){
+      if(mun.uf_id == uf_id) munAtendidos.push(mun);}
+      return munAtendidos;
+    }
+
+  }

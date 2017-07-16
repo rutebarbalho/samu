@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     constructor(private ufService: UFService, private samuService: SamuService)
     { }
 
+
     ngOnInit(): void {
         this.ufs = this.ufService.getAll();
         this.dados_da_samu = this.samuService.getAllMunicipiosAtendidosPorEstado();
