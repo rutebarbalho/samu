@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
-import {UF} from './types/uf';
-import {UFService} from './services/uf.service'
+import {UF} from '../types/uf';
+import {UFService} from '../services/uf.service'
 
-import {Dados} from './types/samu';
-import {SamuService} from './services/samu.service'
+import {Dados} from '../types/samu';
+import {SamuService} from '../services/samu.service'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [UFService, SamuService]
+  templateUrl: './dadosDaUF.component.html',
+  styleUrls: ['../app.component.css']
 })
-export class AppComponent implements OnInit {
+export class dadosDaUFComponent implements OnInit {
   ufs : UF[];
   dados_da_samu : Dados[];
   uf_dados : UF;

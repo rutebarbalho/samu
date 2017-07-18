@@ -1,16 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {AppComponent} from './app.component'
 
-import { AppComponent } from './app.component';
+import {ResumoComponent} from './resumo/resumo.component';
+import {todosDadosComponent} from './todosDados/todosDados.component';
+import {dadosDaUFComponent} from './dados/dadosDaUF.component';
+
+import { RouterModule }   from '@angular/router';
+
+import {UFService} from './services/uf.service'
+import {SamuService} from './services/samu.service'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResumoComponent,
+    todosDadosComponent,
+    dadosDaUFComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+    {
+    path: 'resumo',
+    component: ResumoComponent
+  },
+  {
+    path: 'dadosDaUF',
+    component: dadosDaUFComponent
+  },
+{
+path: 'todosDados',
+component: todosDadosComponent
+}
+    ])
   ],
-  providers: [],
+  providers: [SamuService, UFService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
