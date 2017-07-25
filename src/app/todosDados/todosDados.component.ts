@@ -4,7 +4,9 @@ import {UF} from '../types/uf';
 import {UFService} from '../services/uf.service'
 
 import {Dados} from '../types/samu';
-import {SamuService} from '../services/samu.service'
+import {SamuService} from '../services/samu.service';
+import {DadoNome} from '../types/todosDados';
+import {MetodoTodosService} from '../services/metodoTodos.service'
 
 @Component({
   selector: 'app-root',
@@ -17,8 +19,11 @@ export class todosDadosComponent implements OnInit {
   uf_dados : UF;
   municipios_atendidos: Dados[] = [];
   media : number;
+  samu: Dados[];
+  dados: DadoNome[];
 
-    constructor(private ufService: UFService, private samuService: SamuService)
+
+    constructor(private ufService: UFService, private samuService: SamuService, private metodoTodos: MetodoTodosService)
     { }
 
 
@@ -27,6 +32,7 @@ export class todosDadosComponent implements OnInit {
         this.uf_dados = this.ufService.getPorID(42);
         this.municipios_atendidos = this.samuService.getPorUFMunicipiosAtendidosPorEstado(this.uf_dados);
         this.media = this.calcularMedia();
+        this.dados = this.metodoTodos.unirDados();
     }
 
       calcularMedia(): number{
