@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {AppComponent} from './app.component'
+import { HttpModule }    from '@angular/http';
 
 import {ResumoComponent} from './resumo/resumo.component';
 import {todosDadosComponent} from './todosDados/todosDados.component';
@@ -21,6 +22,7 @@ import {MetodoTodosService} from './services/metodoTodos.service'
   ],
   imports: [
     BrowserModule,
+     HttpModule,
     RouterModule.forRoot([
     {
     path: 'resumo',
